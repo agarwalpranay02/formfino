@@ -34,7 +34,7 @@ Vercel Hobby is restricted to personal/non-commercial use. This free deployment 
 
 The web manifest, Android/desktop icons, Apple touch icon and in-app installation instructions support installation in compatible browsers. iPhone/iPad: Safari → Share → Add to Home Screen. Mac Safari: File → Add to Dock. Chrome/Edge: use the browser's install option. Browsers without installation support can use the website normally.
 
-An internet connection is needed to open the workspace and load tools. The service worker caches only a public offline explanation. It never caches document contents or dynamically rendered pages. Work in progress is not restored after closing/reloading. Save downloads before leaving.
+An internet connection is needed to open the workspace and load tools. The service worker includes a public offline explanation within its script and does not use Cache Storage. It never caches document contents or dynamically rendered pages. Work in progress is not restored after closing/reloading. Save downloads before leaving.
 
 Use current Chrome, Edge, Firefox or Safari. Available memory and file formats differ by device; large PDFs may exceed a phone's memory even below a file-size limit. See **File limits** in the app. JPEG, PNG and WebP are accepted image inputs; HEIC should first be exported as JPEG/PNG. Device/browser testing does not prove universal compatibility.
 

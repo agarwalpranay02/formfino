@@ -2,6 +2,7 @@ import {mkdir,copyFile,readdir,readFile,writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import './prepare-pwa.mjs';
 const require=createRequire(import.meta.url);
 const root=process.cwd();
 await mkdir('public/vendor/ocr',{recursive:true});

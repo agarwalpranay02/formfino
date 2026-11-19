@@ -15,12 +15,11 @@ test('service worker intercepts only same-origin navigations and leaves data req
   handlers.fetch({request:{method:'GET',mode:'navigate',url:'https://formfino.example/'},respondWith:(value:Promise<Response>)=>response=value});
   assert.equal(await(await response)!.text(),'page');
 });
-test('service-worker install reuses an existing fallback and fetches only on a cache miss',async()=>{
+test('offline recovery works without Cache Storage and contains no document data',async()=>{
   const source=await readFile(new URL('../public/sw.js',import.meta.url),'utf8');
-  for(const exists of [true,false]){
-    const handlers:Record<string,(event:Record<string,unknown>)=>void>={};let fetches=0,puts=0,installation:Promise<unknown>|undefined;
-    vm.runInNewContext(source,{self:{addEventListener:(name:string,fn:(event:Record<string,unknown>)=>void)=>handlers[name]=fn},caches:{open:async()=>({match:async()=>exists?new Response('cached'):undefined,put:async()=>{puts++}})},fetch:async()=>{fetches++;return new Response('offline')},Response});
-    handlers.install({waitUntil:(promise:Promise<unknown>)=>installation=promise});await installation;
-    assert.equal(fetches,exists?0:1);assert.equal(puts,exists?0:1);
-  }
+  const handlers:Record<string,(event:Record<string,unknown>)=>void>={};let response:Promise<Response>|undefined;
+  vm.runInNewContext(source,{self:{location:{origin:'https://formfino.example'},addEventListener:(name:string,fn:(event:Record<string,unknown>)=>void)=>handlers[name]=fn},fetch:async()=>{throw new TypeError('offline')},Response,URL});
+  handlers.fetch({request:{method:'GET',mode:'navigate',url:'https://formfino.example/?file=private.pdf'},respondWith:(promise:Promise<Response>)=>response=promise});
+  const result=await response!;const html=await result.text();
+  assert.match(html,/Connect to open your workspace/);assert.ok(!html.includes('private.pdf'));assert.equal(result.headers.get('Cache-Control'),'no-store');
 });
