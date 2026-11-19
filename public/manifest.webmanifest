@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "FormFino — Prepare your files",
+  "short_name": "FormFino",
+  "description": "Prepare application files, fill PDFs, and use private document tools on your device.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f8fb",
+  "theme_color": "#182741",
+  "lang": "en",
+  "icons": [
+    {"src":"/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"/icons/maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ],
+  "shortcuts": [
+    {"name":"Prepare files","url":"/"},
+    {"name":"Fill a PDF","url":"/#fill"},
+    {"name":"All file tools","url":"/#tools"}
+  ]
+}

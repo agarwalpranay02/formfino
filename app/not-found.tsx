@@ -1,0 +1,1 @@
+export default function NotFound(){return <main className="desk-page"><div className="desk-heading"><div><h1>Page not found</h1><p>This link does not point to a FormFino tool.</p></div></div><a className="button dark" href="/">Open the application desk</a></main>}
