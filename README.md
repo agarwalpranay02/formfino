@@ -42,7 +42,7 @@ Nothing is uploaded. There is no file-upload API, no database and no external OC
 
 ## Example
 
-Measured on the live site with the built-in sample form:
+Measured on the live site with the built-in sample form and generated test files:
 
 | File | Requirement | Original | Prepared |
 |---|---|---:|---:|
